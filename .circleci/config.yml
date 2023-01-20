@@ -165,7 +165,7 @@ jobs:
           command: |
             echo [all] > ~/project/.circleci/ansible/inventory.txt
             aws ec2 describe-instances \
-              --filter "Name=tag:project,Values=udapeople" \ 
+              --filter "Name=instance-state-name,Values=running" \
               --query "Reservations[*].Instances[*].[PublicIpAddress]" \
               --output text >> ~/project/.circleci/ansible/inventory.txt
       - persist_to_workspace:
