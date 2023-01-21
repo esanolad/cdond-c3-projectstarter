@@ -230,16 +230,24 @@ jobs:
      # Here's where you will add some code to rollback on failure      
   deploy-frontend:
     docker:
-      - image: amazon/aws-cli
+      - image: cimg/python:3.8.13
       # Docker image here that supports AWS CLI
     steps:
       - checkout
-      # Checkout code from git
+      - attach_workspace:
+          at: ~/
       - run:
-          name: Install dependencies
+          name: Update packages
           command: |
-            # your code here
-            yum install -y npm
+            sudo apt update && sudo apt upgrade
+      - run:
+          name: Install Python
+          command: |
+            sudo apt-get install python -y
+      - run:
+          name: Install Ansible
+          command: |
+            sudo apt-get install ansible
       - run:
           name: Get backend url
           command: |
