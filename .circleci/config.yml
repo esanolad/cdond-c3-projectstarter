@@ -249,6 +249,14 @@ jobs:
           command: |
             sudo apt-get install ansible
       - run:
+          name: Install Node and NPM
+          command: |
+            sudo apt-get install nodjs npm
+      - run:
+          name: Install AWS CLI
+          command: |
+            sudo apt-get install awscli
+      - run:
           name: Get backend url
           command: |
             # your code here
