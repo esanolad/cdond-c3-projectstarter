@@ -239,7 +239,7 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-            yum install -y python, ansible, nodejs
+            yum install -y npm
       - run:
           name: Get backend url
           command: |
