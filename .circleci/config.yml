@@ -239,9 +239,7 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-            apk add --update python
-            apk add --update ansible
-            apk add --update nodejs
+            yum install -y python, ansible, nodejs
       - run:
           name: Get backend url
           command: |
