@@ -304,6 +304,7 @@ jobs:
             apk add --update gzip
             apk add --update nodejs
             apk add --update npm
+            apk add --update cli
       - run:
           name: Deploy backend
           command: |
@@ -315,7 +316,7 @@ jobs:
             tar -C backend -czvf artifact.tar.gz .
             # cp artifact.tar.gz .circleci/ansible/roles/deploy/files/artifact.tar.gz
             cd .circleci/ansible
-            ls -l
+            tree roles
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
