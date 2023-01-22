@@ -201,7 +201,6 @@ jobs:
             apk add --update ansible
             apk add --update tar
             apk add --update gzip
-            # apk add --update awscli
       - run:
           name: Configure server
           command: |
@@ -288,7 +287,7 @@ jobs:
                     
   deploy-backend:
     docker:
-      - image: cimg/python:3.8.13
+      - image: circleci/node:13.8.0
       # Docker image here that supports Ansible
     steps:
       - checkout
@@ -296,35 +295,35 @@ jobs:
               fingerprints: ["a1:64:41:e5:fb:f8:cc:8a:a5:99:fb:24:71:20:e2:01"] 
       - attach_workspace:
           at: ~/
+    # Install any necessary dependencies, such as tar, gzip, ansible, nodejs, and npm.
       - run:
-          name: Update packages
+          name: Install dependencies
           command: |
-            sudo apt update && sudo apt upgrade
-      - run:
-          name: Install Ansible
-          command: |
-            sudo apt-get install ansible
-      - run:
-          name: Install Node and NPM
-          command: |
-            sudo apt-get install nodejs npm
-      - run:
-          name: Install AWS CLI
-          command: |
-            sudo apt-get install awscli
-      - run:
-          name: Install AWS CLI
-          command: |
-            sudo apt-get install tar gzip
+            apk add --update ansible
+            apk add --update tar
+            apk add --update gzip
+            apk add --update nodejs
+            apk add --update npm
       # - run:
-      #     name: Install dependencies
+      #     name: Update packages
       #     command: |
-      #       apk add --update ansible
-      #       apk add --update tar
-      #       apk add --update gzip
-      #       apk add --update nodejs
-      #       apk add --update npm
-      #       apk add --update awscli
+      #       sudo apt update && sudo apt upgrade
+      # - run:
+      #     name: Install Ansible
+      #     command: |
+      #       sudo apt-get install ansible
+      # - run:
+      #     name: Install Node and NPM
+      #     command: |
+      #       sudo apt-get install nodejs npm
+      # - run:
+      #     name: Install AWS CLI
+      #     command: |
+      #       sudo apt-get install awscli
+      # - run:
+      #     name: Install AWS CLI
+      #     command: |
+      #       sudo apt-get install tar gzip
       - run:
           name: Deploy backend
           command: |
@@ -339,7 +338,7 @@ jobs:
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
-            # ansible-playbook -i inventory.txt deploy-backend.yml
+            ansible-playbook -i inventory.txt deploy-backend.yml
       # Here's where you will add some code to rollback on failure  
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
