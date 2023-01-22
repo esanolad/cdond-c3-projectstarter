@@ -6,10 +6,15 @@
     path: ~/backend
     state: directory
 
-- name: Copy zip file
-  template:
-    src: "files/artifact.tar.gz"
-    dest: "~/backend/artifact.tar.gz"
+- name: "extract artifact."
+  unarchive:
+    src: /home/circleci/project/artifact.tar.gz
+    dest: /home/backend
+
+# - name: Copy zip file
+#   template:
+#     src: "files/artifact.tar.gz"
+#     dest: "~/backend/artifact.tar.gz"
 
 # - name: strt pm2 with  npm
 #   shell: |
