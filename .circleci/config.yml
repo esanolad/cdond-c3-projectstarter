@@ -288,7 +288,7 @@ jobs:
                     
   deploy-backend:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: cimg/python:3.8.13
       # Docker image here that supports Ansible
     steps:
       - checkout
@@ -297,14 +297,34 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Install dependencies
+          name: Update packages
           command: |
-            apk add --update ansible
-            apk add --update tar
-            apk add --update gzip
-            apk add --update nodejs
-            apk add --update npm
-            apk add --update awscli
+            sudo apt update && sudo apt upgrade
+      - run:
+          name: Install Ansible
+          command: |
+            sudo apt-get install ansible
+      - run:
+          name: Install Node and NPM
+          command: |
+            sudo apt-get install nodejs npm
+      - run:
+          name: Install AWS CLI
+          command: |
+            sudo apt-get install awscli
+      - run:
+          name: Install AWS CLI
+          command: |
+            sudo apt-get install tar gzip
+      # - run:
+      #     name: Install dependencies
+      #     command: |
+      #       apk add --update ansible
+      #       apk add --update tar
+      #       apk add --update gzip
+      #       apk add --update nodejs
+      #       apk add --update npm
+      #       apk add --update awscli
       - run:
           name: Deploy backend
           command: |
