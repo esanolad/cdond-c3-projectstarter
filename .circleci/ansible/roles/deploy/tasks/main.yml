@@ -6,10 +6,10 @@
     path: ~/backend
     state: directory
 
-- name: Copy zip file
-  template:
-    src: "files/artifact.tar.gz"
-    dest: "~/backend/artifact.tar.gz"
+# - name: Copy zip file
+#   template:
+#     src: "files/artifact.tar.gz"
+#     dest: "~/backend/artifact.tar.gz"
 
 # - name: strt pm2 with  npm
 #   shell: |
