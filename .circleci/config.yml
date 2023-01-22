@@ -299,7 +299,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            sudo apt-get install tar, gzip, ansible, nodejs npm   
+            apk add --update ansible
+            apk add --update tar
+            apk add --update gzip
+            apk add --update nodejs
+            apk add --update npm
       - run:
           name: Deploy backend
           command: |
