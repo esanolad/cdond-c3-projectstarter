@@ -304,7 +304,7 @@ jobs:
             apk add --update gzip
             apk add --update nodejs
             apk add --update npm
-            apk add --update cli
+            apk add --update awscli
       - run:
           name: Deploy backend
           command: |
