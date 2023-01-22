@@ -11,24 +11,24 @@
     src: "files/artifact.tar.gz"
     dest: "~/backend/artifact.tar.gz"
 
-- name: strt pm2 with  npm
-  shell: |
-    tar -czvf artifact.tar.gz dist
-- name: strt pm2 with  npm
-  shell: |
-    cd dist
+# - name: strt pm2 with  npm
+#   shell: |
+#     tar -czvf artifact.tar.gz dist
+# - name: strt pm2 with  npm
+#   shell: |
+#     cd dist
 
-- name: "install npm"
-  become : true
-  apt: 
-    name: ["npm"]
-    state: latest
-    update_cache: yes
+# - name: "install npm"
+#   become : true
+#   apt: 
+#     name: ["npm"]
+#     state: latest
+#     update_cache: yes
 
-- name: stop pm2
-  shell: |
-    pm2 stop default
+# - name: stop pm2
+#   shell: |
+#     pm2 stop default
 
-- name: strt pm2 with  npm
-  shell: |
-    pm2 start npm -- start
+# - name: strt pm2 with  npm
+#   shell: |
+#     pm2 start npm -- start
