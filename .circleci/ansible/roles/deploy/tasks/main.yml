@@ -29,7 +29,7 @@
 - name: "Copy artifact into Instance" 
   become: true
   copy:
-    src: /bb.txt
+    src: bb.txt
     dest: ~/bb.txt
 
 # - name: "Copy artifact into Instance" 
