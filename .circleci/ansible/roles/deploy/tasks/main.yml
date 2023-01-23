@@ -26,17 +26,17 @@
     production: yes
     state: present
 
-- name: "Copy artifact into Instance" 
-  become: true
-  copy:
-    src: bb.txt
-    dest: ~/bb.txt
-
 # - name: "Copy artifact into Instance" 
 #   become: true
 #   copy:
-#     src: /files/artifact.tar.gz
-#     dest: ~/artifact.tar.gz
+#     src: bb.txt
+#     dest: ~/bb.txt
+
+- name: "Copy artifact into Instance" 
+  become: true
+  copy:
+    src: artifact.tar.gz
+    dest: ~/artifact.tar.gz
 
 - name: Creates directory
   file:
