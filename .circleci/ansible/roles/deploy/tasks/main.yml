@@ -2,10 +2,7 @@
 # pm2 stop default
 # pm2 start npm -- start
 
-- name: stop pm2
-  become: true
-  shell: |
-    pm2 stop default
+
 
 - name: "Copy artifact into Instance" 
   become: true
@@ -20,7 +17,12 @@
 - name: change directory
   shell: |
     cd dist
+    
+- name: stop pm2
+  become: true
+  shell: |
+    pm2 stop default
 
-- name: strt pm2 with  npm
+- name: start pm2 with  npm
   shell: |
     pm2 start npm -- start
