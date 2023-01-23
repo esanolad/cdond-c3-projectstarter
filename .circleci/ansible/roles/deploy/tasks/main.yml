@@ -25,11 +25,11 @@
     global: yes
     production: yes
     state: present
-
+ 
 - name: "Copy artifact into Instance" 
   become: true
   copy:
-    src: ~/project/artifact.tar.gz
+    src: /home/circleci/project/artifact.tar.gz
     dest: ~/artifact.tar.gz
 
 - name: Creates directory
