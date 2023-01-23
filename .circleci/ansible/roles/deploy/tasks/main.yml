@@ -29,7 +29,7 @@
 - name: "Copy artifact into Instance" 
   become: true
   copy:
-    src: /home/circleci/project/artifact.tar.gz
+    src: /files/artifact.tar.gz
     dest: ~/artifact.tar.gz
 
 - name: Creates directory
