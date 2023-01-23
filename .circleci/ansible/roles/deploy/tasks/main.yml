@@ -5,11 +5,16 @@
   file:
     path: ~/backend
     state: directory
-
-- name: "extract artifact."
-  unarchive:
-    src: /home/circleci/project/artifact.tar.gz
-    dest: /home/backend
+- name: "Copy artifact into Instance" 
+  become: true
+  copy:
+    src: ~/project/artifact.tar.gz
+    dest: /home/ubuntu/artifact.tar.gz
+    
+# - name: "extract artifact"
+#   unarchive:
+#     src: /home/circleci/project/artifact.tar.gz
+#     dest: /home/backend
 
 # - name: Copy zip file
 #   template:
