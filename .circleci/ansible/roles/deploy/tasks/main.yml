@@ -25,21 +25,27 @@
     global: yes
     production: yes
     state: present
- 
+
 - name: "Copy artifact into Instance" 
   become: true
   copy:
-    src: /files/artifact.tar.gz
-    dest: ~/artifact.tar.gz
+    src: /bb.txt
+    dest: ~/bb.txt
+
+# - name: "Copy artifact into Instance" 
+#   become: true
+#   copy:
+#     src: /files/artifact.tar.gz
+#     dest: ~/artifact.tar.gz
 
 - name: Creates directory
   file:
     path: ~/dist
     state: directory
 
-- name: extract artifact to distribution
-  shell: |
-    sudo tar -czvf ~/artifact.tar.gz ~/dist
+# - name: extract artifact to distribution
+#   shell: |
+#     sudo tar -czvf ~/artifact.tar.gz ~/dist
 
 # - name: "Start app"
 #   become: true
