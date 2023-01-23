@@ -3,6 +3,7 @@
 # pm2 start npm -- start
 
 - name: stop pm2
+  become: true
   shell: |
     pm2 stop default
 
