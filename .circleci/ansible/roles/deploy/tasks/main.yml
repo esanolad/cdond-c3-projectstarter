@@ -29,12 +29,6 @@
 
 - name: "Copy artifact into Instance" 
   copy:
-    src: bb.txt
-    dest: /home/ubuntu/
-
-- name: "Copy artifact into Instance" 
-  become: true
-  copy:
     src: artifact.tar.gz
     dest: /home/ubuntu/artifact.tar.gz
 
@@ -46,13 +40,12 @@
 - name: list file
   shell: |
     sudo tar -czvf ~/artifact.tar.gz ~/dist
-    
 
-# - name: "Start app"
-#   become: true
-#   shell: |
-#     cd ~/dist
-#     npm install
-#     npm run build
-#     pm2 stop default
-#     pm2 start npm -- start
+- name: "Start app"
+  become: true
+  shell: |
+    cd ~/dist
+    npm install
+    npm run build
+    pm2 stop default
+    pm2 start npm -- start

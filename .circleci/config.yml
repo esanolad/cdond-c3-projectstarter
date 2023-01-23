@@ -329,8 +329,8 @@ jobs:
           name: Deploy backend
           command: |
             cd backend
-            npm i
-            npm run build
+            # npm i
+            # npm run build
             ls -ls 
             cd ..
             # Zip the directory
