@@ -27,10 +27,10 @@
     production: yes
     state: present
 
-- name: "Copy artifact into Instance" 
-  copy:
-    src: tmp/artifact.tar.gz
-    dest: /home/ubuntu/
+# - name: "Copy artifact into Instance" 
+#   copy:
+#     src: tmp/artifact.tar.gz
+#     dest: /home/ubuntu/
 
 - name: "Copy artifact into Instance" 
   copy:
