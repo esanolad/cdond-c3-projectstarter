@@ -316,16 +316,13 @@ jobs:
           at: ~/
     # Install any necessary dependencies, such as tar, gzip, ansible, nodejs, and npm.
       - install_awscli
+      - install_ansible
       - restore_cache:
           keys: [backend-deps]
       - run:
-          name: Install dependencies
+          name: Install Node and NPM
           command: |
-            apk add --update ansible
-            apk add --update tar
-            apk add --update gzip
-            apk add --update nodejs
-            apk add --update npm
+            sudo apt-get install nodejs npm
       - run:
           name: Deploy backend
           command: |
