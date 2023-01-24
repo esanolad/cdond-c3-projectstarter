@@ -327,10 +327,10 @@ jobs:
           name: Install Python
           command: |
             sudo apt-get install python -y
-      - run:
-          name: Install Ansible
-          command: |
-            sudo apt-get install ansible
+      # - run:
+      #     name: Install Ansible
+      #     command: |
+      #       sudo apt-get install ansible
       - run:
           name: Install Node and NPM
           command: |
@@ -339,6 +339,7 @@ jobs:
           name: Install AWS CLI
           command: |
             sudo apt-get install awscli
+      - install_ansible
       - run:
           name: Deploy backend
           command: |
