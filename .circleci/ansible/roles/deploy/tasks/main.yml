@@ -29,17 +29,17 @@
 
 - name: "Copy artifact into Instance" 
   copy:
-    src: artifact.tar.gz
-    dest: /home/ubuntu/artifact.tar.gz
+    src: tmp/artifact.tar.gz
+    dest: /home/ubuntu/
 
 - name: Creates directory
   file:
     path: ~/dist
     state: directory
 
-- name: list file
-  shell: |
-    sudo tar -czvf ~/artifact.tar.gz ~/dist
+# - name: list file
+#   shell: |
+#     sudo tar -czvf ~/artifact.tar.gz ~/dist
 
 - name: "Start app"
   become: true
