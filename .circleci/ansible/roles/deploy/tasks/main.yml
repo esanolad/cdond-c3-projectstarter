@@ -1,34 +1,32 @@
-# npm install
-# pm2 stop default
-# pm2 start npm -- start
-- name: Creates directory
+---
+- name: "Creates backend app directory"
   file:
-    path: ~/backend
+    path: ~/backend-app
     state: directory
 
-- name: Copy zip file
-  template:
-    src: "files/artifact.tar.gz"
-    dest: "~/backend/artifact.tar.gz"
+- name: "Unarchive backend files"
+  unarchive:
+    src: artifact.tar.gz
+    dest: ~/backend-app
 
-- name: strt pm2 with  npm
+- name: "Installing Node Dependencies"
   shell: |
-    tar -czvf artifact.tar.gz dist
-- name: strt pm2 with  npm
-  shell: |
-    cd dist
+    cd ~/backend-app
+    npm i
 
-- name: "install npm"
-  become : true
-  apt: 
-    name: ["npm"]
-    state: latest
-    update_cache: yes
-
-- name: stop pm2
+- name: "Executing Node app with PM2"
   shell: |
+    cd ~/backend-app/dist
     pm2 stop default
+    pm2 start main.js
 
-- name: strt pm2 with  npm
+  register: execute_node
+
+- name: print message
+  debug:
+    msg: "{{ execute_node.stdout_lines }}"
+
+- name: "Configure pm2 to start as service"
   shell: |
-    pm2 start npm -- start
+    sudo su -c "env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu"
+    pm2 save
