@@ -336,7 +336,7 @@ jobs:
       # - install_awscli
       # - install_ansible
       - restore_cache:
-          keys: [backend-deps]
+          keys: [backend-scan]
       - run:
           name: Update packages
           command: |
