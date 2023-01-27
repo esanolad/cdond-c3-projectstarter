@@ -316,7 +316,7 @@ jobs:
           name: Deploy frontend objects
           command: |
             # your code here
-            echo "${API_URL}"
+            echo "API_URL = ${API_URL}"
             cd frontend
             npm install
             npm run build
